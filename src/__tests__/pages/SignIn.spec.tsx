@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react';
+import { render, fireEvent, wait, screen } from '@testing-library/react';
 
 import Signin from '../../pages/Signin';
 
@@ -31,19 +31,20 @@ jest.mock('../../core/hooks/Toast', () => {
     }),
   };
 });
+
 describe('SignIn page', () => {
-  beforeEach(() => mockedHistoryPush.mockClear());
+  beforeEach(() => {
+    mockedHistoryPush.mockClear();
+    render(<Signin />);
+  });
 
   it('should be able to sign in', async () => {
-    const { getByPlaceholderText, getByText } = render(<Signin />);
-
-    const emailField = getByPlaceholderText('E-mail');
-    const passwordField = getByPlaceholderText('Senha');
-    const buttonElement = getByText('Entrar');
+    const emailField = screen.getByPlaceholderText('E-mail');
+    const passwordField = screen.getByPlaceholderText('Senha');
+    const buttonElement = screen.getByText('Entrar');
 
     fireEvent.change(emailField, { target: { value: 'johndoe@example.com' } });
     fireEvent.change(passwordField, { target: { value: '123456' } });
-
     fireEvent.click(buttonElement);
 
     await wait(() => {
@@ -52,15 +53,12 @@ describe('SignIn page', () => {
   });
 
   it('should not be able to sign in with invalid credentials', async () => {
-    const { getByPlaceholderText, getByText } = render(<Signin />);
-
-    const emailField = getByPlaceholderText('E-mail');
-    const passwordField = getByPlaceholderText('Senha');
-    const buttonElement = getByText('Entrar');
+    const emailField = screen.getByPlaceholderText('E-mail');
+    const passwordField = screen.getByPlaceholderText('Senha');
+    const buttonElement = screen.getByText('Entrar');
 
     fireEvent.change(emailField, { target: { value: 'not-valid-email' } });
     fireEvent.change(passwordField, { target: { value: '123456' } });
-
     fireEvent.click(buttonElement);
 
     await wait(() => {
@@ -73,15 +71,12 @@ describe('SignIn page', () => {
       throw new Error();
     });
 
-    const { getByPlaceholderText, getByText } = render(<Signin />);
-
-    const emailField = getByPlaceholderText('E-mail');
-    const passwordField = getByPlaceholderText('Senha');
-    const buttonElement = getByText('Entrar');
+    const emailField = screen.getByPlaceholderText('E-mail');
+    const passwordField = screen.getByPlaceholderText('Senha');
+    const buttonElement = screen.getByText('Entrar');
 
     fireEvent.change(emailField, { target: { value: 'joedoe@example.com' } });
     fireEvent.change(passwordField, { target: { value: '123456' } });
-
     fireEvent.click(buttonElement);
 
     await wait(() => {
