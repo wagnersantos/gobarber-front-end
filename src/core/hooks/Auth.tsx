@@ -9,7 +9,7 @@ interface User {
   avatar_url: string;
 }
 
-interface AuthStateDTO {
+export interface AuthStateDTO {
   token: string;
   user: User;
 }
@@ -19,7 +19,7 @@ interface AuthCredentialsDTO {
   password: string;
 }
 
-interface AuthContextDTO {
+export interface AuthContextDTO {
   user: User;
   signIn(credentials: AuthCredentialsDTO): Promise<void>;
   signOut(): void;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react';
+import { render, fireEvent, wait, screen } from '@testing-library/react';
 
 import Input from '../../components/Input';
 
@@ -15,22 +15,17 @@ jest.mock('@unform/core', () => {
     },
   };
 });
-describe('Input component', () => {
-  it('should be able to an input', async () => {
-    const { getByPlaceholderText } = render(
-      <Input name="email" placeholder="E-mail" />,
-    );
 
-    expect(getByPlaceholderText('E-mail')).toBeTruthy();
+describe('Input component', () => {
+  beforeEach(() => render(<Input name="email" placeholder="E-mail" />));
+
+  it('should be able to an input', async () => {
+    expect(screen.getByPlaceholderText('E-mail')).toBeTruthy();
   });
 
   it('should render highlight on input focus', async () => {
-    const { getByPlaceholderText, getByTestId } = render(
-      <Input name="email" placeholder="E-mail" />,
-    );
-
-    const inputElement = getByPlaceholderText('E-mail');
-    const containerElement = getByTestId('input-container');
+    const inputElement = screen.getByPlaceholderText('E-mail');
+    const containerElement = screen.getByTestId('input-container');
 
     fireEvent.focus(inputElement);
 
@@ -48,12 +43,8 @@ describe('Input component', () => {
   });
 
   it('should keep input border highlight when input filled', async () => {
-    const { getByPlaceholderText, getByTestId } = render(
-      <Input name="email" placeholder="E-mail" />,
-    );
-
-    const inputElement = getByPlaceholderText('E-mail');
-    const containerElement = getByTestId('input-container');
+    const inputElement = screen.getByPlaceholderText('E-mail');
+    const containerElement = screen.getByTestId('input-container');
 
     fireEvent.change(inputElement, { target: { value: 'jodoe@example.com' } });
     fireEvent.blur(inputElement);
