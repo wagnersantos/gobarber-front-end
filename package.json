@@ -11,6 +11,7 @@
     "test": "react-scripts test --passWithNoTests --no-cache --runInBand",
     "test:staged": "cross-env CI=true react-scripts test --env=jsdom --findRelatedTests",
     "test:ci": "react-scripts test --coverage --watchAll=false",
+    "test:coveralls": "yarn test:ci && coveralls < coverage/lcov.info",
     "eject": "react-scripts eject",
     "up:last": "yarn upgrade-interactive --lastest"
   },
@@ -71,6 +72,7 @@
     "@typescript-eslint/eslint-plugin": "^2.28.0",
     "@typescript-eslint/parser": "^2.28.0",
     "axios-mock-adapter": "^1.18.1",
+    "coveralls": "^3.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
