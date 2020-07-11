@@ -39,7 +39,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/pages/**/*/tsx",
+      "src/pages/**/*.tsx",
       "src/components/**/*.tsx",
       "src/hooks/*.tsx",
       "!src/hooks/index.tsx"
