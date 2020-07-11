@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from 'react';
 
 import { Container } from './styled';
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean;
 };
 
