@@ -10,8 +10,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests --no-cache --runInBand",
     "test:staged": "cross-env CI=true react-scripts test --env=jsdom --findRelatedTests",
-    "test:ci": "react-scripts test --coverage --watchAll false",
-    "eject": "react-scripts eject"
+    "test:ci": "react-scripts test --coverage",
+    "eject": "react-scripts eject",
+    "up:last": "yarn upgrade-interactive --lastest"
   },
   "dependencies": {
     "@types/yup": "^0.28.0",
