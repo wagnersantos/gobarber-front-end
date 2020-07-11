@@ -1,14 +1,14 @@
-import React from "react";
-import { Switch } from "react-router-dom";
+import React from 'react';
+import { Switch } from 'react-router-dom';
 
-import Route from "./Route";
+import Route from './Route';
 
-import Dashboard from "../pages/Dashboard";
-import ForgotPassword from "../pages/ForgotPassword";
-import Profile from "../pages/Profile";
-import ResetPassword from "../pages/ResetPassword";
-import SignIn from "../pages/Signin";
-import SignUp from "../pages/Signup";
+import Dashboard from '../pages/Dashboard';
+import ForgotPassword from '../pages/ForgotPassword';
+import Profile from '../pages/Profile';
+import ResetPassword from '../pages/ResetPassword';
+import SignIn from '../pages/Signin';
+import SignUp from '../pages/Signup';
 
 const routes: React.FC = () => (
   <Switch>

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { shade } from "polished";
+import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div``;
 
@@ -93,7 +93,7 @@ export const Schedule = styled.div`
     }
 
     span + span::before {
-      content: "";
+      content: '';
       width: 1px;
       height: 12px;
       background: #ff9000;
@@ -126,7 +126,7 @@ export const NextAppointment = styled.div`
       width: 1px;
       left: 0;
       top: 10%;
-      content: "";
+      content: '';
       background: #ff9000;
     }
 
@@ -250,7 +250,7 @@ export const Calendar = styled.aside`
 
   .DayPicker:not(.DayPicker--interactionDisabled)
     .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-    background: ${shade(0.2, "#3e3b47")};
+    background: ${shade(0.2, '#3e3b47')};
   }
 
   .DayPicker-Day--today {

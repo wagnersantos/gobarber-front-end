@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   FiAlertCircle,
   FiXCircle,
   FiCheckCircle,
   FiInfo,
-} from "react-icons/fi";
+} from 'react-icons/fi';
 
-import { ToastMessageDTO, useToast } from "../../../core/hooks/Toast";
+import { ToastMessageDTO, useToast } from '../../../core/hooks/Toast';
 
-import { Container } from "./styled";
+import { Container } from './styled';
 
 interface ToastProps {
   message: ToastMessageDTO;
@@ -38,7 +38,7 @@ const Toast: React.FC<ToastProps> = ({ message, style }) => {
       hasdescription={Number(!!message.description)}
       style={style}
     >
-      {icons[message.type || "info"]}
+      {icons[message.type || 'info']}
       <div>
         <strong>{message.title}</strong>
         {message.description && <p>{message.description}</p>}

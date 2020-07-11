@@ -1,10 +1,10 @@
-import React from "react";
-import { useTransition } from "react-spring";
+import React from 'react';
+import { useTransition } from 'react-spring';
 
-import Toast from "./Toast";
+import Toast from './Toast';
 
-import { ToastMessageDTO } from "../../core/hooks/Toast";
-import { Container } from "./styled";
+import { ToastMessageDTO } from '../../core/hooks/Toast';
+import { Container } from './styled';
 
 interface ToastContainerProps {
   messages: ToastMessageDTO[];
@@ -12,12 +12,12 @@ interface ToastContainerProps {
 const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
   const messagesWithTransition = useTransition(
     messages,
-    (message) => message.id,
+    message => message.id,
     {
-      from: { right: "-120%", opacity: 0 },
-      enter: { right: "0%", opacity: 1 },
-      leave: { right: "-120%", opacity: 0 },
-    }
+      from: { right: '-120%', opacity: 0 },
+      enter: { right: '0%', opacity: 1 },
+      leave: { right: '-120%', opacity: 0 },
+    },
   );
 
   return (

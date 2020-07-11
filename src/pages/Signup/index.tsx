@@ -1,19 +1,19 @@
-import React, { useCallback, useRef } from "react";
-import { FiArrowLeft, FiMail, FiUser, FiLock } from "react-icons/fi";
-import { FormHandles } from "@unform/core";
-import { Form } from "@unform/web";
-import * as Yup from "yup";
-import { Link, useHistory } from "react-router-dom";
+import React, { useCallback, useRef } from 'react';
+import { FiArrowLeft, FiMail, FiUser, FiLock } from 'react-icons/fi';
+import { FormHandles } from '@unform/core';
+import { Form } from '@unform/web';
+import * as Yup from 'yup';
+import { Link, useHistory } from 'react-router-dom';
 
-import api from "../../core/provider/api";
-import { useToast } from "../../core/hooks/Toast";
-import { getValidationErros } from "../../core/utlis/getValidationErros";
+import api from '../../core/provider/api';
+import { useToast } from '../../core/hooks/Toast';
+import { getValidationErros } from '../../core/utlis/getValidationErros';
 
-import Logo from "../../core/assets/images/logo.svg";
+import Logo from '../../core/assets/images/logo.svg';
 
-import { Button, Input } from "../../components";
+import { Button, Input } from '../../components';
 
-import { Container, Content, AnimationContent, Background } from "./styled";
+import { Container, Content, AnimationContent, Background } from './styled';
 
 interface SignupFormDTO {
   name: string;
@@ -32,11 +32,11 @@ const Signup: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          name: Yup.string().required("Nome obrigatorio"),
+          name: Yup.string().required('Nome obrigatorio'),
           email: Yup.string()
-            .required("E-mail obrigatorio")
-            .email("Digite um e-mail válido"),
-          password: Yup.string().min(6, "No minimo 6 digitos"),
+            .required('E-mail obrigatorio')
+            .email('Digite um e-mail válido'),
+          password: Yup.string().min(6, 'No minimo 6 digitos'),
         });
 
         await schema.validate(data, {
@@ -44,19 +44,19 @@ const Signup: React.FC = () => {
         });
 
         const { name, email, password } = data;
-        await api.post("/users", {
+        await api.post('/users', {
           name,
           email,
           password,
         });
 
         addToast({
-          type: "success",
-          title: "Cadastro realizado com sucesso",
-          description: "Você já pode fazer seu logon no GoBarber",
+          type: 'success',
+          title: 'Cadastro realizado com sucesso',
+          description: 'Você já pode fazer seu logon no GoBarber',
         });
 
-        history.push("/");
+        history.push('/');
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErros(error);
@@ -66,13 +66,13 @@ const Signup: React.FC = () => {
         }
 
         addToast({
-          type: "error",
-          title: "Erro no cadastro",
-          description: "Ocorreu um erro ao fazer cadastro, tente novamente",
+          type: 'error',
+          title: 'Erro no cadastro',
+          description: 'Ocorreu um erro ao fazer cadastro, tente novamente',
         });
       }
     },
-    [addToast, history]
+    [addToast, history],
   );
 
   return (

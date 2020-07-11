@@ -1,8 +1,8 @@
-import styled, { keyframes } from "styled-components";
-import { shade } from "polished";
-import { animated } from "react-spring";
+import styled, { keyframes } from 'styled-components';
+import { shade } from 'polished';
+import { animated } from 'react-spring';
 
-import SignInBackground from "../../core/assets/images/sign-in-background.png";
+import SignInBackground from '../../core/assets/images/sign-in-background.png';
 
 export const Container = styled.div`
   height: 100vh;
@@ -56,7 +56,7 @@ export const AnimationContent = styled(animated.div)`
       transition: color 0.2s;
 
       &:hover {
-        color: ${shade(0.2, "#f4ede8")};
+        color: ${shade(0.2, '#f4ede8')};
       }
     }
   }
@@ -76,7 +76,7 @@ export const AnimationContent = styled(animated.div)`
     }
 
     &:hover {
-      color: ${shade(0.2, "#FF9000")};
+      color: ${shade(0.2, '#FF9000')};
     }
   }
 `;

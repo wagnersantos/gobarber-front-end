@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Container } from "./styled";
+import { Container } from './styled';
 
 interface TooltipProps {
   title: string;
@@ -9,7 +9,7 @@ interface TooltipProps {
 
 const Tooltip: React.FC<TooltipProps> = ({
   title,
-  className = "",
+  className = '',
   children,
 }) => (
   <Container className={className}>

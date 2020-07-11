@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
-import { animated } from "react-spring";
+import styled, { css } from 'styled-components';
+import { animated } from 'react-spring';
 
 interface Toastprops {
-  type: "success" | "error" | "info";
+  type: 'success' | 'error' | 'info';
   hasdescription: number;
 }
 
@@ -33,7 +33,7 @@ export const Container = styled(animated.div)<Toastprops>`
     margin-top: 8px;
   }
 
-  ${({ type }) => toastTypeVariations[type] || "info"}
+  ${({ type }) => toastTypeVariations[type] || 'info'}
 
   > svg {
     margin: 4px 12px 0 0;

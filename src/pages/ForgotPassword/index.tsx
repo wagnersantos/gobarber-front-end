@@ -1,19 +1,19 @@
-import React, { useCallback, useRef, useState } from "react";
-import { FiLogIn, FiMail } from "react-icons/fi";
-import { FormHandles } from "@unform/core";
-import { Form } from "@unform/web";
-import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import React, { useCallback, useRef, useState } from 'react';
+import { FiLogIn, FiMail } from 'react-icons/fi';
+import { FormHandles } from '@unform/core';
+import { Form } from '@unform/web';
+import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
-import api from "../../core/provider/api";
-import { useToast } from "../../core/hooks/Toast";
-import { getValidationErros } from "../../core/utlis/getValidationErros";
+import api from '../../core/provider/api';
+import { useToast } from '../../core/hooks/Toast';
+import { getValidationErros } from '../../core/utlis/getValidationErros';
 
-import Logo from "../../core/assets/images/logo.svg";
+import Logo from '../../core/assets/images/logo.svg';
 
-import { Button, Input } from "../../components";
+import { Button, Input } from '../../components';
 
-import { Container, Content, AnimationContent, Background } from "./styled";
+import { Container, Content, AnimationContent, Background } from './styled';
 
 interface ForgotPasswordFormDTO {
   email: string;
@@ -35,24 +35,24 @@ const ForgotPassword: React.FC = () => {
 
         const schema = Yup.object().shape({
           email: Yup.string()
-            .required("E-mail obrigatorio")
-            .email("Digite um e-mail válido"),
-          password: Yup.string().required("Senha obrigatoria"),
+            .required('E-mail obrigatorio')
+            .email('Digite um e-mail válido'),
+          password: Yup.string().required('Senha obrigatoria'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await api.post("/forgot-password", {
+        await api.post('/forgot-password', {
           email: data.email,
         });
 
         addToast({
-          type: "success",
-          title: "E-mail de recuperação enviado",
+          type: 'success',
+          title: 'E-mail de recuperação enviado',
           description:
-            "Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada",
+            'Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada',
         });
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
@@ -66,13 +66,13 @@ const ForgotPassword: React.FC = () => {
       }
 
       addToast({
-        type: "error",
-        title: "Erro na recuperação de senha",
+        type: 'error',
+        title: 'Erro na recuperação de senha',
         description:
-          "Ocorreu um erro ao tentawr recuperar a senha, tente novamente",
+          'Ocorreu um erro ao tentawr recuperar a senha, tente novamente',
       });
     },
-    [addToast]
+    [addToast],
   );
 
   return (
