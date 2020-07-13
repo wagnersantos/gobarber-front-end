@@ -60,4 +60,20 @@ describe('Signup page', () => {
       expect(mockedHistoryPush).toHaveBeenCalledWith('/');
     });
   });
+
+  it('should not be able to sign in with invalid credentials', async () => {
+    const nameField = screen.getByPlaceholderText('Nome');
+    const emailField = screen.getByPlaceholderText('E-mail');
+    const passwordField = screen.getByPlaceholderText('Senha');
+    const buttonElement = screen.getByText('Cadastrar');
+
+    fireEvent.change(nameField, { target: { value: 'john doe' } });
+    fireEvent.change(emailField, { target: { value: 'not-valid-email' } });
+    fireEvent.change(passwordField, { target: { value: '123456' } });
+    fireEvent.click(buttonElement);
+
+    await wait(() => {
+      expect(mockedHistoryPush).not.toHaveBeenCalled();
+    });
+  });
 });
