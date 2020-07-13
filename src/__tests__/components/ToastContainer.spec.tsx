@@ -61,7 +61,7 @@ describe('ToastContainer component', () => {
     });
   });
 
-  it('should be able to remove ToastContainer on setTiemOut', async () => {
+  it('should be able to remove ToastContainer on setTimeOut', async () => {
     sutFactory({ type: 'error' });
 
     act(() => {
