@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, wait } from '@testing-library/react';
+import { render, screen, fireEvent, wait, act } from '@testing-library/react';
 
 import ToastContainer from '../../components/ToastContainer';
 
@@ -32,6 +32,8 @@ const sutFactory = ({ type }: IType): void => {
   );
 };
 
+jest.useFakeTimers();
+
 describe('ToastContainer component', () => {
   it('should be able to a ToastContainer', async () => {
     sutFactory({ type: 'success' });
@@ -53,5 +55,12 @@ describe('ToastContainer component', () => {
         expect.stringContaining('id'),
       );
     });
+  });
+
+  it('should be able to remove ToastContainer on setTiemOut', async () => {
+    sutFactory({ type: 'error' });
+
+    screen.debug();
+    expect(setTimeout).toHaveBeenCalledTimes(1);
   });
 });
