@@ -4,7 +4,9 @@ import {
   RenderHookResult,
 } from '@testing-library/react-hooks';
 import MockAdapter from 'axios-mock-adapter';
+
 import { useAuth, AuthProvider, AuthContextDTO } from '../../core/hooks/Auth';
+import { mockDataAccount, mockAccount } from '../../core/mocks/mockAccount';
 
 import api from '../../core/provider/api';
 
@@ -16,32 +18,9 @@ const sutFactory = (): RenderHookResult<unknown, AuthContextDTO> => {
   });
 };
 
-const mockDataAccount = {
-  user: {
-    id: 'user123',
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    avatar_url: 'image-test.jpg',
-  },
-  token: 'token123',
-};
-
 const removeItemSpy = jest.spyOn(Storage.prototype, 'removeItem');
 const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
 const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-
-const mockAccount = (): void => {
-  getItemSpy.mockImplementation(key => {
-    switch (key) {
-      case '@GoBarber:token':
-        return mockDataAccount.token;
-      case '@GoBarber:user':
-        return JSON.stringify(mockDataAccount.user);
-      default:
-        return null;
-    }
-  });
-};
 
 const compareStorage = (
   item: jest.SpyInstance<void, [string, string]>,
