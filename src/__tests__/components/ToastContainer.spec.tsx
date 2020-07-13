@@ -3,13 +3,17 @@ import { render, screen } from '@testing-library/react';
 
 import ToastContainer from '../../components/ToastContainer';
 
-const sutFactory = (): void => {
+type IType = {
+  type?: 'success' | 'error' | 'info';
+};
+
+const sutFactory = ({ type }: IType): void => {
   render(
     <ToastContainer
       messages={[
         {
           id: 'id',
-          type: 'success',
+          type,
           title: 'title test',
           description: 'desc test',
         },
@@ -20,7 +24,13 @@ const sutFactory = (): void => {
 
 describe('ToastContainer component', () => {
   it('should be able to a ToastContainer', async () => {
-    sutFactory();
+    sutFactory({ type: 'success' });
+    expect(screen.getByText('title test')).toBeInTheDocument();
+    expect(screen.getByText('desc test')).toBeInTheDocument();
+  });
+
+  it('should be able to show default type', async () => {
+    sutFactory({ type: undefined });
     expect(screen.getByText('title test')).toBeInTheDocument();
     expect(screen.getByText('desc test')).toBeInTheDocument();
   });

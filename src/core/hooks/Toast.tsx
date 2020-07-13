@@ -10,7 +10,7 @@ interface ToastContextDTO {
 
 export interface ToastMessageDTO {
   id: string;
-  type: 'success' | 'error' | 'info';
+  type?: 'success' | 'error' | 'info';
   title: string;
   description?: string;
 }
