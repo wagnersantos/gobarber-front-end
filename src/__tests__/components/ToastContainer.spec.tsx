@@ -35,6 +35,10 @@ const sutFactory = ({ type }: IType): void => {
 jest.useFakeTimers();
 
 describe('ToastContainer component', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should be able to a ToastContainer', async () => {
     sutFactory({ type: 'success' });
     expect(screen.getByText('title test')).toBeInTheDocument();
@@ -60,7 +64,13 @@ describe('ToastContainer component', () => {
   it('should be able to remove ToastContainer on setTiemOut', async () => {
     sutFactory({ type: 'error' });
 
-    screen.debug();
-    expect(setTimeout).toHaveBeenCalledTimes(1);
+    act(() => {
+      jest.runAllTimers();
+    });
+    await wait(() => {
+      expect(mockedRemoveToast).toHaveBeenCalledWith(
+        expect.stringContaining('id'),
+      );
+    });
   });
 });
