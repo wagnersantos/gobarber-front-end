@@ -76,4 +76,24 @@ describe('Signup page', () => {
       expect(mockedHistoryPush).not.toHaveBeenCalled();
     });
   });
+
+  it('should display an error if signup false', async () => {
+    const nameField = screen.getByPlaceholderText('Nome');
+    const emailField = screen.getByPlaceholderText('E-mail');
+    const passwordField = screen.getByPlaceholderText('Senha');
+    const buttonElement = screen.getByText('Cadastrar');
+
+    apiMock.onPost('/users').reply(500);
+
+    fireEvent.change(nameField, { target: { value: 'john doe' } });
+    fireEvent.change(emailField, { target: { value: 'johndoe@example.com' } });
+    fireEvent.change(passwordField, { target: { value: '123456' } });
+    fireEvent.click(buttonElement);
+
+    await wait(() => {
+      expect(mockedAddToast).toHaveBeenCalledWith(
+        expect.objectContaining({ type: 'error' }),
+      );
+    });
+  });
 });
