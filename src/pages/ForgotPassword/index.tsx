@@ -54,11 +54,11 @@ const ForgotPassword: React.FC = () => {
             'Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada',
         });
       } catch (error) {
+        /* istanbul ignore else */
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErros(error);
 
           formRef.current?.setErrors(errors);
-          return;
         }
       } finally {
         setLoading(false);
