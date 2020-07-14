@@ -31,6 +31,8 @@ const apiMock = new MockAdapter(api);
 
 describe('ForgotPassword pages', () => {
   beforeEach(() => {
+    apiMock.reset();
+    mockedAddToast.mockClear();
     render(<ForgotPassword />);
   });
 
@@ -56,6 +58,27 @@ describe('ForgotPassword pages', () => {
     await wait(() => {
       expect(mockedAddToast).toHaveBeenCalledWith(
         expect.objectContaining({ type: 'success' }),
+      );
+    });
+  });
+
+  it('should not be able to forgotPassword in with invalid email', async () => {
+    const emailField = screen.getByPlaceholderText('E-mail');
+    const buttonElement = screen.getByText('Recuperar');
+    const email = 'not-valid-email';
+
+    apiMock
+      .onPost('/forgot-password', {
+        email,
+      })
+      .reply(404);
+
+    fireEvent.change(emailField, { target: { value: email } });
+    fireEvent.click(buttonElement);
+
+    await wait(() => {
+      expect(mockedAddToast).toHaveBeenCalledWith(
+        expect.objectContaining({ type: 'error' }),
       );
     });
   });
