@@ -35,9 +35,8 @@ const ForgotPassword: React.FC = () => {
 
         const schema = Yup.object().shape({
           email: Yup.string()
-            .required('E-mail obrigatorio')
+            .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
-          password: Yup.string().required('Senha obrigatoria'),
         });
 
         await schema.validate(data, {
@@ -69,7 +68,7 @@ const ForgotPassword: React.FC = () => {
         type: 'error',
         title: 'Erro na recuperação de senha',
         description:
-          'Ocorreu um erro ao tentawr recuperar a senha, tente novamente',
+          'Ocorreu um erro ao tentar recuperar a senha, tente novamente',
       });
     },
     [addToast],
