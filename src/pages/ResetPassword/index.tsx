@@ -45,7 +45,6 @@ const ResetPassword: React.FC = () => {
 
         const token = location.search.replace('?token=', '');
         const { password, password_confirmation } = data;
-
         if (!token) {
           throw new Error();
         }
@@ -58,6 +57,7 @@ const ResetPassword: React.FC = () => {
 
         history.push('/');
       } catch (error) {
+        /* istanbul ignore else */
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErros(error);
 
