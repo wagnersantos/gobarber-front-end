@@ -7,7 +7,7 @@ import { useHistory, Link } from 'react-router-dom';
 
 import api from '../../core/provider/api';
 import { useToast } from '../../core/hooks/Toast';
-import { getValidationErros } from '../../core/utlis/getValidationErros';
+import { getValidationErros } from '../../core/utils/getValidationErros';
 import { useAuth } from '../../core/hooks/Auth';
 
 import { Button, Input } from '../../components';
@@ -34,18 +34,18 @@ const Profile: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          name: Yup.string().required('Nome obrigatorio'),
+          name: Yup.string().required('Nome obrigatório'),
           email: Yup.string()
-            .required('E-mail obrigatorio')
+            .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
           old_password: Yup.string(),
-          password: Yup.string().when('old_passowrd', {
+          password: Yup.string().when('old_password', {
             is: value => !!value.length,
             then: Yup.string().required('Campo obrigatório'),
             otherwise: Yup.string(),
           }),
           password_confirmation: Yup.string()
-            .when('old_passowrd', {
+            .when('old_password', {
               is: value => !!value.length,
               then: Yup.string().required('Campo obrigatório'),
               otherwise: Yup.string(),
@@ -184,7 +184,7 @@ const Profile: React.FC = () => {
             name="password"
             icon={FiLock}
             type="password"
-            placeholder="Confrimar senha"
+            placeholder="Confirmar senha"
           />
 
           <Button type="submit">Confirmar mudanças</Button>

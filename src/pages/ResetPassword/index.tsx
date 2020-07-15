@@ -7,7 +7,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import api from '../../core/provider/api';
 import { useToast } from '../../core/hooks/Toast';
-import { getValidationErros } from '../../core/utlis/getValidationErros';
+import { getValidationErros } from '../../core/utils/getValidationErros';
 
 import Logo from '../../core/assets/images/logo.svg';
 
