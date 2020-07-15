@@ -123,4 +123,19 @@ describe('Profile pages', () => {
       expect(mockedHistoryPush).not.toHaveBeenCalledWith();
     });
   });
+
+  it('should be able to update avatar', async () => {
+    const avatarField = screen.getByTestId('avatar');
+    const file = new File(['(⌐□_□)'], 'avatar.png', { type: 'image/png' });
+
+    apiMock.onPatch('/users/avatar').reply(200);
+
+    fireEvent.change(avatarField, { target: { files: [file] } });
+
+    await wait(() => {
+      expect(mockedAddToast).toHaveBeenCalledWith(
+        expect.objectContaining({ type: 'success' }),
+      );
+    });
+  });
 });

@@ -110,6 +110,7 @@ const Profile: React.FC = () => {
 
   const handleAvatarChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
+      /* istanbul ignore else */
       if (e.target.files) {
         const data = new FormData();
 
@@ -157,7 +158,12 @@ const Profile: React.FC = () => {
             <label htmlFor="avatar">
               <FiCamera />
 
-              <input type="file" id="avatar" onChange={handleAvatarChange} />
+              <input
+                type="file"
+                id="avatar"
+                data-testid="avatar"
+                onChange={handleAvatarChange}
+              />
             </label>
           </AvatarInput>
 
