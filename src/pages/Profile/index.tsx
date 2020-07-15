@@ -94,7 +94,6 @@ const Profile: React.FC = () => {
           const errors = getValidationErros(error);
 
           formRef.current?.setErrors(errors);
-          return;
         }
 
         addToast({
