@@ -41,6 +41,7 @@ const apiMock = new MockAdapter(api);
 describe('Profile pages', () => {
   beforeEach(() => {
     render(<Profile />);
+    jest.clearAllMocks();
   });
 
   it('should be render Profile', () => {
@@ -99,6 +100,27 @@ describe('Profile pages', () => {
         expect.objectContaining({ type: 'success' }),
       );
       expect(mockedHistoryPush).toHaveBeenCalledWith('/dashboard');
+    });
+  });
+
+  it('should be not able to update profile with invalid email', async () => {
+    const nameField = screen.getByPlaceholderText('Nome');
+    const emailField = screen.getByPlaceholderText('E-mail');
+    const buttonElement = screen.getByText('Confirmar mudanças');
+    const name = 'John Doe';
+    const email = 'invalid-email';
+
+    apiMock.onPut('/profile').reply(200);
+
+    fireEvent.change(nameField, { target: { value: name } });
+    fireEvent.change(emailField, { target: { value: email } });
+    fireEvent.click(buttonElement);
+
+    await wait(() => {
+      expect(mockedAddToast).toHaveBeenCalledWith(
+        expect.objectContaining({ type: 'error' }),
+      );
+      expect(mockedHistoryPush).not.toHaveBeenCalledWith();
     });
   });
 });
