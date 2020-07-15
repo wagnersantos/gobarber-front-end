@@ -90,6 +90,7 @@ const Profile: React.FC = () => {
             'Suas informações de perfil foram atualizadas com sucesso!',
         });
       } catch (error) {
+        /* istanbul ignore else */
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErros(error);
 
