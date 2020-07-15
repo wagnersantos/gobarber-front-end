@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, wait } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import * as RouterDom from 'react-router';
-import { createMemoryHistory, MemoryHistory } from 'history';
+import { createMemoryHistory } from 'history';
 
 import api from '../../core/provider/api';
 
@@ -11,7 +11,6 @@ import { mockAccount } from '../../core/mocks/mockAccount';
 import ResetPassword from '../../pages/ResetPassword';
 
 const mockedAddToast = jest.fn();
-const mockLocation = jest.fn(() => 'teste');
 
 jest.mock('../../core/hooks/Toast', () => {
   return {
