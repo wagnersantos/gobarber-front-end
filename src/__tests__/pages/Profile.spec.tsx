@@ -80,4 +80,25 @@ describe('Profile pages', () => {
       expect(mockedHistoryPush).toHaveBeenCalledWith('/dashboard');
     });
   });
+
+  it('should be able to update name and email', async () => {
+    const nameField = screen.getByPlaceholderText('Nome');
+    const emailField = screen.getByPlaceholderText('E-mail');
+    const buttonElement = screen.getByText('Confirmar mudanças');
+    const name = 'John Doe';
+    const email = 'johndoe@example.com';
+
+    apiMock.onPut('/profile').reply(200);
+
+    fireEvent.change(nameField, { target: { value: name } });
+    fireEvent.change(emailField, { target: { value: email } });
+    fireEvent.click(buttonElement);
+
+    await wait(() => {
+      expect(mockedAddToast).toHaveBeenCalledWith(
+        expect.objectContaining({ type: 'success' }),
+      );
+      expect(mockedHistoryPush).toHaveBeenCalledWith('/dashboard');
+    });
+  });
 });
