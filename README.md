@@ -1,44 +1,86 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+<a style="margin-left:10px;" href='https://travis-ci.com/wagnersantos/gobarber-front-end.svg?branch=master'><img src='https://travis-ci.com/wagnersantos/gobarber-front-end.svg?branch=master' alt='Coverage Status' /></a>
+<a href='https://coveralls.io/github/wagnersantos/gobarber-front-end?branch=master'><img src='https://coveralls.io/repos/github/wagnersantos/gobarber-front-end/badge.svg?branch=master' alt='Coverage Status' /></a>
+<a href="https://img.shields.io/badge/code%20style-Airbnb-brightgreen">
+<img style="margin-left:10px;" src="https://img.shields.io/badge/code%20style-Airbnb-brightgreen" />
+</a>
+<a href="https://img.shields.io/badge/license-MIT-green">
+<img style="margin-left:10px;" src="https://img.shields.io/badge/license-MIT-green" />
+</a>
+<a href="https://img.shields.io/github/wagnersantos/gobarber-front-end">
+<img style="margin-left:10px;" src="https://img.shields.io/github/languages/count/wagnersantos/gobarber-front-end" />
+</a>
+<a style="margin-left:10px;" href="https://opensource.org/"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" /></a>
+<a href="https://img.shields.io/github/wagnersantos/gobarber-front-end">
+<img style="margin-left:10px;" src="https://img.shields.io/github/package-json/v/wagnersantos/gobarber-front-end">
+</a>
+</p>
 
-## Available Scripts
+# **GoBarber**
 
-In the project directory, you can run:
+- O GoBarber versão web é um sistema de consulta de agendamentos de serviços de barbearia. Idealizado pela Rocketseat para estudos.
 
-### `yarn start`
+> ## Menu
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<ul>
+  <li><a href="#bibliotecas-e-ferramentas">Bibliotecas e Ferramentas</a></li>
+  <li><a href="#features-do-react">Features do React</a></li>
+  <li><a href="#features-do-typescript">Features do Typescript</a></li>
+  <li><a href="#features-de-testes">Features de Testes</a></li>
+</ul>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+> ## Bibliotecas e Ferramentas
 
-### `yarn test`
+- Typescript
+- React
+- Styled-components
+- React Router DOM
+- Axios
+- Jest
+- React Testing Library
+- Yup
+- Unform/core
+- Unform/web
+- Date-fns
+- Polished
+- React-day-picker
+- React-icons
+- React-spring
+- Uuidv4
+- Travis CI
+- Coveralls
+- Husky
+- Lint Staged
+- Eslint
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<span style="margin:0 25px;"><a href="#menu">voltar ao menu</a></span>
 
-### `yarn build`
+> ## Features do React
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Functional Components
+- UseState
+- UseContext
+- UseEffect
+- UseHistory
+- UseRef
+- UseParams
+- Custom Hooks
+- Router
+- Memo
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<span style="margin:0 25px;"><a href="#menu">voltar ao menu</a></span>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> ## Features do Typescript
 
-### `yarn eject`
+- Interface
+- Utility Types
+- Generics
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<span style="margin:0 25px;"><a href="#menu">voltar ao menu</a></span>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> ## Features de Testes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Testes Unitários
+- Cobertura de Testes
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<span style="margin:0 25px;"><a href="#menu">voltar ao menu</a></span>
