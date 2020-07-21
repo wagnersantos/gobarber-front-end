@@ -9,7 +9,7 @@ export const mockDataAccount = {
 };
 
 export const mockAccount = (getItemSpy = jest.fn()): void => {
-  getItemSpy.mockImplementation(key => {
+  getItemSpy.mockImplementation((key: string) => {
     switch (key) {
       case '@GoBarber:token':
         return mockDataAccount.token;
