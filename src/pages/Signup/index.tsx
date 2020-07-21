@@ -32,11 +32,11 @@ const Signup: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          name: Yup.string().required('Nome obrigatorio'),
+          name: Yup.string().required('Nome obrigatório'),
           email: Yup.string()
-            .required('E-mail obrigatorio')
+            .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
-          password: Yup.string().min(6, 'No minimo 6 digitos'),
+          password: Yup.string().min(6, 'No mínimo 6 dígitos'),
         });
 
         await schema.validate(data, {
@@ -100,7 +100,7 @@ const Signup: React.FC = () => {
 
           <Link to="/">
             <FiArrowLeft />
-            Voltar para logon
+            Voltar ao login
           </Link>
         </AnimationContent>
       </Content>
