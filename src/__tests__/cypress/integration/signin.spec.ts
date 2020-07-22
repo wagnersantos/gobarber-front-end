@@ -22,4 +22,16 @@ describe('SignIn', () => {
       .children()
       .should('have.length', '3');
   });
+
+  it.only('should present error if form is invalid', () => {
+    cy.visit('');
+    cy.get('input[placeholder="E-mail"]').type('invalid-email');
+    cy.get('input[placeholder="Senha"]').type('123');
+    cy.get('button').click();
+    cy.getByTestId('input-container')
+      .first()
+      .should('have.css', 'border-color', 'rgb(197, 48, 48)')
+      .children()
+      .should('have.length', '3');
+  });
 });
