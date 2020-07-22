@@ -52,4 +52,27 @@ describe('SignIn', () => {
       .children('svg')
       .should('have.css', 'border-color', 'rgb(255, 144, 0)');
   });
+
+  it('should present invalidCredentialsError on 401', () => {
+    cy.server();
+    cy.route({
+      method: 'POST',
+      url: /sessions/,
+      status: 401,
+      response: {
+        error: 'Credenciais inválidas',
+      },
+    }).as('request');
+    cy.get('input[placeholder="E-mail"]').type('test@test.com');
+    cy.get('input[placeholder="Senha"]').type('123456');
+    cy.get('button').click();
+    cy.getByTestId('toast-container')
+      .children()
+      .should('have.attr', 'type', 'error')
+      .should('contain.text', 'Erro na autenticação')
+      .should(
+        'contain.text',
+        'Ocorreu um erro ao fazer login, cheque as credenciais',
+      );
+  });
 });
