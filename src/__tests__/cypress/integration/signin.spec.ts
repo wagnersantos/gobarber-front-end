@@ -1,12 +1,15 @@
 describe('SignIn', () => {
-  it('should correct initial state', () => {
+  beforeEach(() => {
     cy.visit('');
+  });
+
+  it('should correct initial state', () => {
     cy.getByTestId('input-container')
       .should('not.have.css', 'border-color', '#c53030')
       .should('have.length', '2');
   });
+
   it('should present error if submit empty values', () => {
-    cy.visit('');
     cy.get('input[placeholder="E-mail"]');
     cy.get('input[placeholder="Senha"]');
     cy.get('button').click();
@@ -23,8 +26,7 @@ describe('SignIn', () => {
       .should('have.length', '3');
   });
 
-  it.only('should present error if form is invalid', () => {
-    cy.visit('');
+  it('should present error if form is invalid', () => {
     cy.get('input[placeholder="E-mail"]').type('invalid-email');
     cy.get('input[placeholder="Senha"]').type('123');
     cy.get('button').click();
