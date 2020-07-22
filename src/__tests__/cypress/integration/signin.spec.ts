@@ -48,6 +48,12 @@ describe('SignIn', () => {
       .should('have.css', 'border-color', 'rgb(255, 144, 0)');
     cy.get('button').focus();
     cy.getByTestId('input-container')
+      .first()
+      .should('not.have.css', 'border-color', 'rgb(255, 144, 0)')
+      .children('svg')
+      .should('have.css', 'border-color', 'rgb(255, 144, 0)');
+    cy.getByTestId('input-container')
+      .last()
       .should('not.have.css', 'border-color', 'rgb(255, 144, 0)')
       .children('svg')
       .should('have.css', 'border-color', 'rgb(255, 144, 0)');
