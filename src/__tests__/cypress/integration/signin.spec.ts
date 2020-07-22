@@ -134,4 +134,26 @@ describe('SignIn', () => {
     cy.wait('@request');
     cy.get('@request.all').should('have.length', 1);
   });
+
+  it('should not call submit if form is invalid', () => {
+    cy.server();
+    cy.route({
+      method: 'POST',
+      url: /sessions/,
+      status: 200,
+      response: {
+        token: faker.random.uuid(),
+        user: {
+          id: faker.random.uuid(),
+          name: faker.name.findName(),
+          email: faker.internet.email(),
+          avatar_url: faker.internet.url(),
+        },
+      },
+    }).as('request');
+    cy.get('input[placeholder="E-mail"]')
+      .type(faker.internet.email())
+      .type('{enter}');
+    cy.get('@request.all').should('have.length', 0);
+  });
 });
