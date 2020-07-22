@@ -1,3 +1,7 @@
+import faker from 'faker';
+
+const { baseUrl } = Cypress.config();
+
 describe('SignIn', () => {
   beforeEach(() => {
     cy.visit('');
@@ -80,5 +84,31 @@ describe('SignIn', () => {
         'contain.text',
         'Ocorreu um erro ao fazer login, cheque as credenciais',
       );
+  });
+
+  it('should present save token if valid credentials are provided', () => {
+    cy.server();
+    cy.route({
+      method: 'POST',
+      url: /sessions/,
+      status: 200,
+      response: {
+        token: faker.random.uuid(),
+        user: {
+          id: faker.random.uuid(),
+          name: faker.name.findName(),
+          email: faker.internet.email(),
+          avatar_url: faker.internet.url(),
+        },
+      },
+    }).as('request');
+    cy.get('input[placeholder="E-mail"]').type('test@test.com');
+    cy.get('input[placeholder="Senha"]').type('123456');
+    cy.get('button').click();
+    cy.url().should('eq', `${baseUrl}/dashboard`);
+    cy.window().then(window => {
+      assert.isOk(window.localStorage.getItem('@GoBarber:token'));
+      assert.isOk(window.localStorage.getItem('@GoBarber:user'));
+    });
   });
 });
