@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -21,6 +21,7 @@ interface SigninFormDTO {
 }
 
 const Signin: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
   const { signIn } = useAuth();
   const { addToast } = useToast();
@@ -29,6 +30,9 @@ const Signin: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: SigninFormDTO) => {
       try {
+        if (isLoading) return;
+
+        setIsLoading(!isLoading);
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -61,9 +65,11 @@ const Signin: React.FC = () => {
           title: 'Erro na autenticação',
           description: 'Ocorreu um erro ao fazer login, cheque as credenciais',
         });
+      } finally {
+        setIsLoading(!isLoading);
       }
     },
-    [addToast, history, signIn],
+    [addToast, history, isLoading, signIn],
   );
 
   return (
