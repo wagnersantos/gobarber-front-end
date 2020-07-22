@@ -161,4 +161,9 @@ describe('SignIn', () => {
     cy.get('a[href="/signup"]').click();
     cy.url().should('eq', `${baseUrl}/signup`);
   });
+
+  it('should navigate to forgot password', () => {
+    cy.get('a[href="/forgot-password"]').click();
+    cy.url().should('eq', `${baseUrl}/forgot-password`);
+  });
 });
