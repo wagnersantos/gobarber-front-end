@@ -36,4 +36,20 @@ describe('SignIn', () => {
       .children()
       .should('have.length', '3');
   });
+
+  it('should present valid state if form is valid', () => {
+    cy.get('input[placeholder="E-mail"]')
+      .type('test@test.com')
+      .parent()
+      .should('have.css', 'border-color', 'rgb(255, 144, 0)');
+    cy.get('input[placeholder="Senha"]')
+      .type('123456')
+      .parent()
+      .should('have.css', 'border-color', 'rgb(255, 144, 0)');
+    cy.get('button').focus();
+    cy.getByTestId('input-container')
+      .should('not.have.css', 'border-color', 'rgb(255, 144, 0)')
+      .children('svg')
+      .should('have.css', 'border-color', 'rgb(255, 144, 0)');
+  });
 });
