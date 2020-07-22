@@ -156,4 +156,9 @@ describe('SignIn', () => {
       .type('{enter}');
     cy.get('@request.all').should('have.length', 0);
   });
+
+  it('should navigate to create account', () => {
+    cy.get('a[href="/signup"]').click();
+    cy.url().should('eq', `${baseUrl}/signup`);
+  });
 });
