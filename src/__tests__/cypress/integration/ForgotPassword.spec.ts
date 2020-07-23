@@ -30,4 +30,11 @@ describe('ForgotPassword', () => {
       .children()
       .should('have.length', '3');
   });
+
+  it('should present valid state if form is valid', () => {
+    cy.get('input[placeholder="E-mail"]')
+      .type(faker.internet.email())
+      .parent()
+      .should('have.css', 'border-color', 'rgb(255, 144, 0)');
+  });
 });
