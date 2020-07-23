@@ -142,4 +142,9 @@ describe('SignUp', () => {
       .type('{enter}');
     cy.get('@request.all').should('have.length', 0);
   });
+
+  it('should back to signin ', () => {
+    cy.get('a[href="/"]').click();
+    cy.url().should('eq', `${baseUrl}/`);
+  });
 });
