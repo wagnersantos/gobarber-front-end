@@ -60,16 +60,16 @@ const ForgotPassword: React.FC = () => {
 
           formRef.current?.setErrors(errors);
         }
+
+        addToast({
+          type: 'error',
+          title: 'Erro na recuperação de senha',
+          description:
+            'Ocorreu um erro ao tentar recuperar a senha, tente novamente',
+        });
       } finally {
         setLoading(false);
       }
-
-      addToast({
-        type: 'error',
-        title: 'Erro na recuperação de senha',
-        description:
-          'Ocorreu um erro ao tentar recuperar a senha, tente novamente',
-      });
     },
     [addToast],
   );
