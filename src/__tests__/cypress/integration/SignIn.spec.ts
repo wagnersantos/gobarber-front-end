@@ -14,8 +14,6 @@ describe('SignIn', () => {
   });
 
   it('should present error if submit empty values', () => {
-    cy.get('input[placeholder="E-mail"]');
-    cy.get('input[placeholder="Senha"]');
     cy.get('button').click();
     cy.getByTestId('input-container')
       .first()
