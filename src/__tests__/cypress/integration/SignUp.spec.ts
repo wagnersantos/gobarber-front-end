@@ -11,7 +11,7 @@ describe('SignUp', () => {
 
   it('should correct initial state', () => {
     cy.getByTestId('input-container')
-      .should('not.have.css', 'border-color', '#c53030')
+      .should('not.have.css', 'border-color', 'rgb(197, 48, 48)')
       .should('have.length', '3');
   });
 
