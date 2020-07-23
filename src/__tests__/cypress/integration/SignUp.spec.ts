@@ -114,4 +114,19 @@ describe('SignUp', () => {
       .should('contain.text', 'Cadastro realizado com sucesso')
       .should('contain.text', 'Você já pode fazer seu logon no GoBarber');
   });
+
+  it('should prevent multiple submits', () => {
+    cy.route({
+      method: 'POST',
+      url: /users/,
+      status: 204,
+      response: faker.random.words(),
+    }).as('request');
+    cy.get('input[placeholder="Nome"]').type(faker.random.word());
+    cy.get('input[placeholder="E-mail"]').type(faker.internet.email());
+    cy.get('input[placeholder="Senha"]').type(faker.random.alphaNumeric(6));
+    cy.get('button').dblclick();
+    cy.wait('@request');
+    cy.get('@request.all').should('have.length', 1);
+  });
 });
