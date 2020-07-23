@@ -1,5 +1,7 @@
 import faker from 'faker';
 
+const { baseUrl } = Cypress.config();
+
 describe('ForgotPassword', () => {
   beforeEach(() => {
     cy.viewport(1024, 768);
@@ -57,6 +59,26 @@ describe('ForgotPassword', () => {
       .should(
         'contain.text',
         'Ocorreu um erro ao tentar recuperar a senha, tente novamente',
+      );
+  });
+
+  it('should forgotPassword if valid email is provided', () => {
+    cy.server();
+    cy.route({
+      method: 'POST',
+      url: /forgot-password/,
+      status: 204,
+      response: faker.random.words(),
+    }).as('request');
+    cy.get('input[placeholder="E-mail"]').type(faker.internet.email());
+    cy.get('button').click();
+    cy.getByTestId('toast-container')
+      .children()
+      .should('have.attr', 'type', 'success')
+      .should('contain.text', 'E-mail de recuperação enviado')
+      .should(
+        'contain.text',
+        'Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada',
       );
   });
 });
