@@ -69,4 +69,28 @@ describe('SignIn', () => {
       .children('svg')
       .should('have.css', 'border-color', 'rgb(255, 144, 0)');
   });
+
+  it('should present message if happened unexpectedError', () => {
+    cy.server();
+    cy.route({
+      method: 'POST',
+      url: /sessions/,
+      status: faker.helpers.randomize([400, 403, 404, 500]),
+      response: {
+        error: faker.random.words(),
+      },
+    }).as('request');
+    cy.get('input[placeholder="Nome"]').type(faker.random.word());
+    cy.get('input[placeholder="E-mail"]').type(faker.internet.email());
+    cy.get('input[placeholder="Senha"]').type(faker.random.alphaNumeric(6));
+    cy.get('button').click();
+    cy.getByTestId('toast-container')
+      .children()
+      .should('have.attr', 'type', 'error')
+      .should('contain.text', 'Erro no cadastro')
+      .should(
+        'contain.text',
+        'Ocorreu um erro ao fazer cadastro, tente novamente',
+      );
+  });
 });
