@@ -2,7 +2,7 @@ import faker from 'faker';
 
 const { baseUrl } = Cypress.config();
 
-describe('SignIn', () => {
+describe('SignUp', () => {
   beforeEach(() => {
     cy.server();
     cy.visit('/signup');
