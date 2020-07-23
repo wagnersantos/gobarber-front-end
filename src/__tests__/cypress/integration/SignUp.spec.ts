@@ -1,5 +1,7 @@
 import faker from 'faker';
 
+const { baseUrl } = Cypress.config();
+
 describe('SignIn', () => {
   beforeEach(() => {
     cy.visit('/signup');
@@ -92,5 +94,25 @@ describe('SignIn', () => {
         'contain.text',
         'Ocorreu um erro ao fazer cadastro, tente novamente',
       );
+  });
+
+  it('should create account and navigate to signin if valid data are provided', () => {
+    cy.server();
+    cy.route({
+      method: 'POST',
+      url: /users/,
+      status: 204,
+      response: faker.random.words(),
+    }).as('request');
+    cy.get('input[placeholder="Nome"]').type(faker.random.word());
+    cy.get('input[placeholder="E-mail"]').type(faker.internet.email());
+    cy.get('input[placeholder="Senha"]').type(faker.random.alphaNumeric(6));
+    cy.get('button').click();
+    cy.url().should('eq', `${baseUrl}/`);
+    cy.getByTestId('toast-container')
+      .children()
+      .should('have.attr', 'type', 'success')
+      .should('contain.text', 'Cadastro realizado com sucesso')
+      .should('contain.text', 'Você já pode fazer seu logon no GoBarber');
   });
 });
