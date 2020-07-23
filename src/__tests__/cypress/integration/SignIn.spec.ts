@@ -5,6 +5,7 @@ const { baseUrl } = Cypress.config();
 describe('SignIn', () => {
   beforeEach(() => {
     cy.visit('');
+    cy.viewport(1024, 768);
   });
 
   it('should correct initial state', () => {

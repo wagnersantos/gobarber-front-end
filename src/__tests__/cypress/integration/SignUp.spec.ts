@@ -3,6 +3,7 @@ import faker from 'faker';
 describe('SignIn', () => {
   beforeEach(() => {
     cy.visit('/signup');
+    cy.viewport(1024, 768);
   });
 
   it('should correct initial state', () => {
