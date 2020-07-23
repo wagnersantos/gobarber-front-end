@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FiArrowLeft, FiMail, FiUser, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -22,6 +22,7 @@ interface SignupFormDTO {
 }
 
 const Signup: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
@@ -29,6 +30,9 @@ const Signup: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: SignupFormDTO) => {
       try {
+        if (isLoading) return;
+
+        setIsLoading(!isLoading);
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -70,9 +74,11 @@ const Signup: React.FC = () => {
           title: 'Erro no cadastro',
           description: 'Ocorreu um erro ao fazer cadastro, tente novamente',
         });
+      } finally {
+        setIsLoading(!isLoading);
       }
     },
-    [addToast, history],
+    [addToast, history, isLoading],
   );
 
   return (
