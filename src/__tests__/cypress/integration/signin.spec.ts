@@ -31,8 +31,8 @@ describe('SignIn', () => {
   });
 
   it('should present error if form is invalid', () => {
-    cy.get('input[placeholder="E-mail"]').type('invalid-email');
-    cy.get('input[placeholder="Senha"]').type('123');
+    cy.get('input[placeholder="E-mail"]').type(faker.random.word());
+    cy.get('input[placeholder="Senha"]').type(faker.random.alphaNumeric(3));
     cy.get('button').click();
     cy.getByTestId('input-container')
       .first()
@@ -43,11 +43,11 @@ describe('SignIn', () => {
 
   it('should present valid state if form is valid', () => {
     cy.get('input[placeholder="E-mail"]')
-      .type('test@test.com')
+      .type(faker.internet.email())
       .parent()
       .should('have.css', 'border-color', 'rgb(255, 144, 0)');
     cy.get('input[placeholder="Senha"]')
-      .type('123456')
+      .type(faker.random.alphaNumeric(6))
       .parent()
       .should('have.css', 'border-color', 'rgb(255, 144, 0)');
     cy.get('button').focus();
@@ -73,8 +73,8 @@ describe('SignIn', () => {
         error: 'Credenciais inválidas',
       },
     }).as('request');
-    cy.get('input[placeholder="E-mail"]').type('test@test.com');
-    cy.get('input[placeholder="Senha"]').type('123456');
+    cy.get('input[placeholder="E-mail"]').type(faker.internet.email());
+    cy.get('input[placeholder="Senha"]').type(faker.random.alphaNumeric(6));
     cy.get('button').click();
     cy.getByTestId('toast-container')
       .children()
@@ -102,8 +102,8 @@ describe('SignIn', () => {
         },
       },
     }).as('request');
-    cy.get('input[placeholder="E-mail"]').type('test@test.com');
-    cy.get('input[placeholder="Senha"]').type('123456');
+    cy.get('input[placeholder="E-mail"]').type(faker.internet.email());
+    cy.get('input[placeholder="Senha"]').type(faker.random.alphaNumeric(6));
     cy.get('button').click();
     cy.url().should('eq', `${baseUrl}/dashboard`);
     cy.window().then(window => {
@@ -128,8 +128,8 @@ describe('SignIn', () => {
         },
       },
     }).as('request');
-    cy.get('input[placeholder="E-mail"]').type('test@test.com');
-    cy.get('input[placeholder="Senha"]').type('123456');
+    cy.get('input[placeholder="E-mail"]').type(faker.internet.email());
+    cy.get('input[placeholder="Senha"]').type(faker.random.alphaNumeric(6));
     cy.get('button').dblclick();
     cy.wait('@request');
     cy.get('@request.all').should('have.length', 1);
