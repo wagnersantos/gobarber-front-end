@@ -4,6 +4,7 @@ const { baseUrl } = Cypress.config();
 
 describe('ForgotPassword', () => {
   beforeEach(() => {
+    cy.server();
     cy.viewport(1024, 768);
     cy.visit('/forgot-password');
   });
@@ -41,7 +42,6 @@ describe('ForgotPassword', () => {
   });
 
   it('should present should present message if happened unexpectedError', () => {
-    cy.server();
     cy.route({
       method: 'POST',
       url: /forgot-password/,
@@ -63,7 +63,6 @@ describe('ForgotPassword', () => {
   });
 
   it('should forgotPassword if valid email is provided', () => {
-    cy.server();
     cy.route({
       method: 'POST',
       url: /forgot-password/,
