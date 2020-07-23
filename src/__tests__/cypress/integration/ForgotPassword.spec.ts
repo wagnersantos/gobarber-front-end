@@ -1,7 +1,5 @@
 import faker from 'faker';
 
-const { baseUrl } = Cypress.config();
-
 describe('ForgotPassword', () => {
   beforeEach(() => {
     cy.server();
