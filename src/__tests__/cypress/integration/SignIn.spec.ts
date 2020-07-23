@@ -62,14 +62,14 @@ describe('SignIn', () => {
       .should('have.css', 'border-color', 'rgb(255, 144, 0)');
   });
 
-  it('should present invalidCredentialsError on 401', () => {
+  it('should present should present message if happened unexpectedError', () => {
     cy.server();
     cy.route({
       method: 'POST',
       url: /sessions/,
-      status: 401,
+      status: faker.helpers.randomize([400, 401, 404, 500]),
       response: {
-        error: 'Credenciais inválidas',
+        error: faker.random.words(),
       },
     }).as('request');
     cy.get('input[placeholder="E-mail"]').type(faker.internet.email());
