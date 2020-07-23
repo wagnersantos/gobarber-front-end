@@ -129,4 +129,17 @@ describe('SignUp', () => {
     cy.wait('@request');
     cy.get('@request.all').should('have.length', 1);
   });
+
+  it('should not call submit if form is invalid', () => {
+    cy.route({
+      method: 'POST',
+      url: /users/,
+      status: 204,
+      response: faker.random.words(),
+    }).as('request');
+    cy.get('input[placeholder="E-mail"]')
+      .type(faker.internet.email())
+      .type('{enter}');
+    cy.get('@request.all').should('have.length', 0);
+  });
 });
