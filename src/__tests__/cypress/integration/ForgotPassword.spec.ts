@@ -37,4 +37,26 @@ describe('ForgotPassword', () => {
       .parent()
       .should('have.css', 'border-color', 'rgb(255, 144, 0)');
   });
+
+  it('should present should present message if happened unexpectedError', () => {
+    cy.server();
+    cy.route({
+      method: 'POST',
+      url: /forgot-password/,
+      status: faker.helpers.randomize([400, 401, 404, 500]),
+      response: {
+        error: faker.random.words(),
+      },
+    }).as('request');
+    cy.get('input[placeholder="E-mail"]').type(faker.internet.email());
+    cy.get('button').click();
+    cy.getByTestId('toast-container')
+      .children()
+      .should('have.attr', 'type', 'error')
+      .should('contain.text', 'Erro na recuperação de senha')
+      .should(
+        'contain.text',
+        'Ocorreu um erro ao tentar recuperar a senha, tente novamente',
+      );
+  });
 });
