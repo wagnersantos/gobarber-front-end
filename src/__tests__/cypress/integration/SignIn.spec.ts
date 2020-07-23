@@ -4,6 +4,7 @@ const { baseUrl } = Cypress.config();
 
 describe('SignIn', () => {
   beforeEach(() => {
+    cy.server();
     cy.visit('');
     cy.viewport(1024, 768);
   });
@@ -63,7 +64,6 @@ describe('SignIn', () => {
   });
 
   it('should present should present message if happened unexpectedError', () => {
-    cy.server();
     cy.route({
       method: 'POST',
       url: /sessions/,
@@ -86,7 +86,6 @@ describe('SignIn', () => {
   });
 
   it('should present save token if valid credentials are provided', () => {
-    cy.server();
     cy.route({
       method: 'POST',
       url: /sessions/,
@@ -112,7 +111,6 @@ describe('SignIn', () => {
   });
 
   it('should prevent multiple submits', () => {
-    cy.server();
     cy.route({
       method: 'POST',
       url: /sessions/,
@@ -135,7 +133,6 @@ describe('SignIn', () => {
   });
 
   it('should not call submit if form is invalid', () => {
-    cy.server();
     cy.route({
       method: 'POST',
       url: /sessions/,
