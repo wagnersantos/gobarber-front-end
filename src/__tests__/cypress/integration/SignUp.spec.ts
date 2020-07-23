@@ -74,7 +74,7 @@ describe('SignIn', () => {
     cy.server();
     cy.route({
       method: 'POST',
-      url: /sessions/,
+      url: /users/,
       status: faker.helpers.randomize([400, 403, 404, 500]),
       response: {
         error: faker.random.words(),
