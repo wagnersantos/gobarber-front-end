@@ -4,6 +4,7 @@ const { baseUrl } = Cypress.config();
 
 describe('SignIn', () => {
   beforeEach(() => {
+    cy.server();
     cy.visit('/signup');
     cy.viewport(1024, 768);
   });
@@ -73,7 +74,6 @@ describe('SignIn', () => {
   });
 
   it('should present message if happened unexpectedError', () => {
-    cy.server();
     cy.route({
       method: 'POST',
       url: /users/,
@@ -97,7 +97,6 @@ describe('SignIn', () => {
   });
 
   it('should create account and navigate to signin if valid data are provided', () => {
-    cy.server();
     cy.route({
       method: 'POST',
       url: /users/,
